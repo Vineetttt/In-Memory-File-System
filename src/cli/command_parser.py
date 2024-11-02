@@ -1,11 +1,13 @@
 from src.commands.mkdir_command import MkdirCommand
 from src.commands.cd_command import CdCommand
+from src.commands.touch_command import TouchCommand
 
 class CommandParser:
     def __init__(self, file_system):
         self.commands = {
             "mkdir": MkdirCommand(file_system),
-            "cd": CdCommand(file_system)
+            "cd": CdCommand(file_system),
+            "touch": TouchCommand(file_system)
         }
 
     def parse_and_execute(self, command_line):
