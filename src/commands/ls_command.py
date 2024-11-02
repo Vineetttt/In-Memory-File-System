@@ -22,8 +22,6 @@ class LsCommand(Command):
                 return
 
         contents = list(target_node.children.items())
-        
-        # Separate directories and files
         directories = [name for name, node in contents if node.is_directory]
         files = [name for name, node in contents if not node.is_directory]
 
