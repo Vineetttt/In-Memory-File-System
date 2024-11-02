@@ -1,6 +1,10 @@
+from src.commands.mkdir_command import MkdirCommand
+
 class CommandParser:
     def __init__(self, file_system):
-        self.commands = {}
+        self.commands = {
+            "mkdir": MkdirCommand(file_system)
+        }
 
     def parse_and_execute(self, command_line):
         if not command_line:
