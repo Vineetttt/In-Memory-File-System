@@ -1,11 +1,24 @@
+import re
+
 def normalize_path(path):
     """Normalize a file system path."""
     if not path:
         return "."
-    # Remove consecutive slashes
     while "//" in path:
         path = path.replace("//", "/")
-    # Remove trailing slash unless it's root
     if path != "/" and path.endswith("/"):
         path = path[:-1]
     return path
+
+def validate_name(name):
+        """Validate name against standard rules."""
+        if not name or name.isspace():
+            print("Error: Directory name cannot be empty or whitespace.")
+            return False
+        if len(name) > 255:
+            print("Error: Directory name cannot exceed 255 characters.")
+            return False
+        if re.search(r'[<>:"/\\|?*]', name):
+            print("Error: Directory name contains invalid characters.")
+            return False
+        return True
