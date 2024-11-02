@@ -1,5 +1,5 @@
 from .base_command import Command
-from src.core.file_node-0 import FileNode
+from src.core.file_node import FileNode
 
 class MkdirCommand(Command):
     def execute(self, args):
