@@ -21,7 +21,6 @@ class LsCommand(Command):
                 print(f"Error: '{target_path}' is not a directory.")
                 return
 
-        # Get and sort contents
         contents = list(target_node.children.items())
         
         # Separate directories and files
