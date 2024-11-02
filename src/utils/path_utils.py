@@ -22,3 +22,18 @@ def validate_name(name):
             print("Error: Directory name contains invalid characters.")
             return False
         return True
+
+def get_full_path(node):
+    """Get the full path of a node."""
+    if not node:
+        return "/"
+        
+    path_parts = []
+    current = node
+    while current and current.name != "/":
+        path_parts.append(current.name)
+        current = current.parent
+        
+    if not path_parts:
+        return "/"
+    return "/" + "/".join(reversed(path_parts))
