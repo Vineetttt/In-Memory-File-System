@@ -6,6 +6,7 @@ from src.commands.echo_command import EchoCommand
 from src.commands.cat_command import CatCommand
 from src.commands.mv_command import MvCommand
 from src.commands.cp_command import CpCommand
+from src.commands.rm_command import RmCommand
 
 class CommandParser:
     def __init__(self, file_system):
@@ -17,7 +18,8 @@ class CommandParser:
             "echo": EchoCommand(file_system),
             "cat": CatCommand(file_system),
             "mv":MvCommand(file_system),
-            "cp":CpCommand(file_system)
+            "cp":CpCommand(file_system),
+            "rm":RmCommand(file_system)
         }
 
     def parse_and_execute(self, command_line):
