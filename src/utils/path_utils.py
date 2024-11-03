@@ -1,4 +1,5 @@
 import re
+from datetime import datetime 
 
 def normalize_path(path):
     """Normalize a file system path."""
@@ -51,3 +52,45 @@ def parse_echo_command(command_str):
         content = content[1:-1]  
 
     return content, file_path
+
+def get_destination_node(fs, path):
+    """Get destination node and its parent based on path."""
+    path_parts = [p for p in normalize_path(path).split('/') if p and p != '.']
+    dest_parent = fs.root if path.startswith('/') else fs.current_directory
+    
+    for part in path_parts[:-1]:
+        if part == '..':
+            if dest_parent.parent:
+                dest_parent = dest_parent.parent
+            continue
+        if part not in dest_parent.children or not dest_parent.children[part].is_directory:
+            print(f"Error: Directory '{part}' does not exist.")
+            return None, None, None
+        dest_parent = dest_parent.children[part]
+    
+    final_name = path_parts[-1] if path_parts else None
+    return dest_parent, final_name, path_parts
+
+def move_node(source_node, source_parent, dest_parent, final_name):
+    """Move a node from source to destination."""
+    if final_name in dest_parent.children:
+        if dest_parent.children[final_name].is_directory:
+            dest_parent = dest_parent.children[final_name]
+            final_name = source_node.name
+        else:
+            print(f"Error: '{final_name}' already exists in destination.")
+            return False
+
+    if not validate_name(final_name):
+        return False
+
+    # remove source
+    del source_parent.children[source_node.name]
+    
+    # add destination
+    source_node.name = final_name
+    source_node.parent = dest_parent
+    source_node.modified_at = datetime.now()
+    dest_parent.children[final_name] = source_node
+    
+    return True
