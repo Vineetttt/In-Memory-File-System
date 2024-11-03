@@ -3,6 +3,7 @@ from src.commands.cd_command import CdCommand
 from src.commands.touch_command import TouchCommand
 from src.commands.ls_command import LsCommand
 from src.commands.echo_command import EchoCommand
+from src.commands.cat_command import CatCommand
 
 class CommandParser:
     def __init__(self, file_system):
@@ -11,7 +12,8 @@ class CommandParser:
             "cd": CdCommand(file_system),
             "touch": TouchCommand(file_system),
             "ls": LsCommand(file_system),
-            "echo": EchoCommand(file_system)
+            "echo": EchoCommand(file_system),
+            "cat": CatCommand(file_system)
         }
 
     def parse_and_execute(self, command_line):
