@@ -2,6 +2,7 @@ from src.commands.mkdir_command import MkdirCommand
 from src.commands.cd_command import CdCommand
 from src.commands.touch_command import TouchCommand
 from src.commands.ls_command import LsCommand
+from src.commands.echo_command import EchoCommand
 
 class CommandParser:
     def __init__(self, file_system):
@@ -9,7 +10,8 @@ class CommandParser:
             "mkdir": MkdirCommand(file_system),
             "cd": CdCommand(file_system),
             "touch": TouchCommand(file_system),
-            "ls": LsCommand(file_system)
+            "ls": LsCommand(file_system),
+            "echo": EchoCommand(file_system)
         }
 
     def parse_and_execute(self, command_line):

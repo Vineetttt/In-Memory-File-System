@@ -37,3 +37,17 @@ def get_full_path(node):
     if not path_parts:
         return "/"
     return "/" + "/".join(reversed(path_parts))
+
+def parse_echo_command(command_str):
+    """Parse the echo command to extract content and file path."""
+    redirect_split = command_str.split('>', 1)
+    if len(redirect_split) != 2:
+        return None, None
+
+    content = redirect_split[0].strip()
+    file_path = redirect_split[1].strip()
+
+    if (content.startswith('"') and content.endswith('"')) or (content.startswith("'") and content.endswith("'")):
+        content = content[1:-1]  
+
+    return content, file_path
