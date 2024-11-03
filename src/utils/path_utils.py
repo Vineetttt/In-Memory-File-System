@@ -1,4 +1,5 @@
 import re
+from src.core.file_node import FileNode
 from datetime import datetime 
 
 def normalize_path(path):
@@ -94,3 +95,37 @@ def move_node(source_node, source_parent, dest_parent, final_name):
     dest_parent.children[final_name] = source_node
     
     return True
+
+def copy_node(source_node, dest_parent, final_name):
+        """Copy a node to the destination parent with the given name."""
+        if not validate_name(final_name):
+            return False
+
+        if final_name in dest_parent.children:
+            if dest_parent.children[final_name].is_directory:
+                if source_node.is_directory:
+                    print(f"Error: Directory '{final_name}' already exists in destination.")
+                    return False
+                dest_parent = dest_parent.children[final_name]
+                final_name = source_node.name
+            else:
+                print(f"Error: File '{final_name}' already exists in destination.")
+                return False
+
+        # new node
+        new_node = FileNode(
+            name=final_name,
+            is_directory=source_node.is_directory,
+            content=source_node.content
+        )
+        new_node.parent = dest_parent
+        new_node.created_at = datetime.now()
+        new_node.modified_at = datetime.now()
+
+        # directory then recursively copy children
+        if source_node.is_directory:
+            for child_name, child_node in source_node.children.items():
+                if not copy_node(child_node, new_node, child_name):
+                    return False
+        dest_parent.children[final_name] = new_node
+        return True
