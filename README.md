@@ -31,7 +31,7 @@ For detailed documentation, please refer to the following link:
 
 ### Clone the repository:
 ```bash
-git clone https://github.com/your-username/in-memory-file-system.git
+git clone https://github.com/Vineetttt/In-Memory-File-System.git
 cd in-memory-file-system
 ```
 
