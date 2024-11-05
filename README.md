@@ -50,3 +50,9 @@ python main.py
 ```bash
 python -m unittest discover tests
 ```
+
+### If you are Using Docker
+```bash
+docker build -t in-memory-file-system .
+docker run -it --rm in-memory-file-system
+```
