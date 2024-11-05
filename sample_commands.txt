@@ -1,0 +1,36 @@
+### Directory Operations (mkdir)
+mkdir test_dir               
+mkdir test_dir/nested_dir    
+mkdir "test dir with spaces"  
+mkdir                       
+
+### Navigation (cd)
+cd test_dir                  
+cd ..                        
+cd nonexistent_dir           
+
+### Directory Listing (ls)
+ls                          
+ls test_dir                 
+ls nonexistent_dir          
+
+### File Operations (touch)
+touch file.txt              
+touch test_dir/file.txt     
+touch                       
+
+### File Content Operations (echo & cat)
+echo "Hello World" > file.txt  
+cat file.txt                  
+cat nonexistent.txt           
+
+### Move Operations (mv)
+mv file.txt new_file.txt      
+mv test_dir new_dir           
+mv nonexistent.txt dest.txt    
+
+### Remove Operations (rm)
+rm file.txt                   
+rm -r test_dir                
+rm nonexistent.txt            
+"""

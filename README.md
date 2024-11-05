@@ -45,6 +45,7 @@ source venv/bin/activate  # On Windows: .\venv\Scripts\activate
 ```bash
 python main.py
 ```
+Refer sample_commands.txt to test and interact with the system using different commands
 
 ### Running Tests:
 ```bash
